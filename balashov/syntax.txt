@@ -1,0 +1,16 @@
+lang==((statement)\s*|for_expr\s*|if_expr\s*|bloc\s*)*
+if_expr==KW_IF\s*LBRACKET\sif_condition\s*RBRACKET
+if_condition==operand\s(LOGIC_OPER\soperand)?
+for_expr==KW_FOR\sLBRACKET\sfor_main\s*RBRACKET
+for_main==for_init\sfor_condition\s(for_iteration)
+for_init==assignment\sSEMICOLON
+for_condition==logic_op\sSEMICOLON
+for_iteration==assignment|arithmetic_op
+bloc==LBRACE\s((for_expr\s*|if_expr\s*|statement\s*|bloc\s*)*)*RBRACE
+statement==(assignment|arithmetic_op)\sSEMICOLON
+assignment==VAR\sASSIGN_OPER\s(operand|arithmetic_op)
+arithmetic_op==binary_op|unary_op
+binary_op==operand\sBIN_ARITHM_OPER\soperand
+unary_op==VAR\sUNA_ARITHM_OPER
+logic_op==operand\sLOGIC_OPER\soperand
+operand==(VAR|DIGIT)
